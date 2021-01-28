@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 
+//COMPONENTS
+import { Calendar } from 'components';
+
 //MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -71,6 +74,7 @@ const AddNewTask = () => {
                         onChange={handleTaskNameChange}
                     />
                     <ButtonGroup />
+                    <Calendar />
                 </FormControl>
             </Grid>
         </Grid>

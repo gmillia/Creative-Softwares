@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 
+//FUNCTIONS
+import { addTask } from 'functions';
+
 //COMPONENTS
 import { Calendar } from 'components';
 
@@ -21,15 +24,40 @@ const useStyles = makeStyles(thene => ({
         borderRadius: 10,
         paddingLeft: 10,
         paddingRight: 10,
+        color: 'white',
     },
     low: {
-        background: 'green'
+        backgroundColor: '#5FCD8D',
+        '&:hover': {
+            backgroundColor: '#55b87e'
+        }
+
     },
     medium: {
-        background: 'orange',
+        background: '#FB8333',
+        '&:hover': {
+            backgroundColor: '#e1752d'
+        }
     },
     high: {
-        background: 'red'
+        background: '#FF6159',
+        '&:hover': {
+            backgroundColor: '#e55750'
+        }
+    },
+    create: {
+        background: 'black',
+        marginLeft: 10,
+        color: 'white'
+    },
+    cancel: {
+        background: 'red',
+        color: 'white'
+    },
+    actionButtons: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        color: 'white'
     }
 }));
 
@@ -54,13 +82,19 @@ const ButtonGroup = () => {
 const AddNewTask = () => {
     const classes = useStyles();
     const [taskName, setTaskName] = useState('');
+    const [priority, setPriority] = useState('');
+    const [date, setDate] = useState(new Date());
 
     const handleTaskNameChange = (e) => {
         setTaskName(e.target.value);
     }
 
     const addNewTask = () => {
-
+        addTask({
+            name: taskName,
+            priority: priority,
+            date: date,
+        })
     }
 
     return (
@@ -74,7 +108,15 @@ const AddNewTask = () => {
                         onChange={handleTaskNameChange}
                     />
                     <ButtonGroup />
-                    <Calendar />
+                    <Calendar setDateCallback={setDate} />
+                    <Grid item xs={12} className={classes.actionButtons} >
+                        <Button size='small' className={classes.cancel} >
+                            Cancel
+                        </Button>
+                        <Button size='small' className={classes.create} onClick={addNewTask} >
+                            Create
+                        </Button>
+                    </Grid>
                 </FormControl>
             </Grid>
         </Grid>

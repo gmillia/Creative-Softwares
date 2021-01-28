@@ -3,21 +3,35 @@ import React, { useState } from 'react';
 //MATERIAL UI CALENDAR
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizaitonProvider from '@material-ui/lab/LocalizationProvider';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+import TimePicker from '@material-ui/lab/TimePicker';
+import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
+import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
 import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
 
 const Calendar = () => {
     const [date, setDate] = useState(new Date());
 
     return (
-        <LocalizaitonProvider dateAdapter={AdapterDateFns}>
-            <StaticDatePicker
-                orientation="landscape"
-                openTo="date"
-
-                renderInput={(params) => <TextField {...params} variant="standard" />}
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DesktopDatePicker 
+                inputFormat="MM/dd/yyyy"
+                label="Date picker desktop"
+                value={date}
+                onChange={newDate => setDate(newDate)}
+                renderInput={(params) => (
+                <TextField
+                    id="date-picker-desktop"
+                    margin="normal"
+                    {...params}
+                    variant="standard"
+                />
+                )}
+                OpenPickerButtonProps={{
+                'aria-label': 'change date',
+                }}
             />
-        </LocalizaitonProvider>
+        </LocalizationProvider>
     )
 };
 

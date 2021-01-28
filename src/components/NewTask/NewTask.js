@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+//COMPONENTS
+import { AddNewTask } from 'components';
 
 //MATERIAL UI
 import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
 import { IconButton } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import Dialog from '@material-ui/core/Dialog';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -17,14 +21,26 @@ const useStyles = makeStyles(theme => ({
 
 const NewTask = () => {
     const classes = useStyles();
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    }
+
+    const handleClose = () => {
+        setOpen(false);
+    }
 
     return (
         <Grid item xs={12} className={classes.newTaskRoot} >
             <Tooltip title='Add new Task' >
-                <IconButton>
+                <IconButton onClick={handleOpen} >
                     <AddCircleIcon color='error' fontSize='large' />
                 </IconButton>
             </Tooltip>
+            <Dialog open={open} onClose={handleClose}>
+                <AddNewTask />
+            </Dialog>
         </Grid>
     )
 };

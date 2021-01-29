@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
 const useLocalStorage = () => {
-    const [tasks, setTasks] = useState({
-        objects: [],
-        id: 0,
-    });
-
-    useEffect(() => {
+    const [tasks, setTasks] = useState(() => {
         let localTasks = window.localStorage.getItem('tasks');
 
         if(localTasks !== null && localTasks !== undefined) {
-            setTasks(JSON.parse(localTasks));
+            return JSON.parse(localTasks);
         }
-    }, [])
+
+        return {
+            objects: [],
+            id: 0,
+        }
+    });
 
     const addTask = (newTask) => {
         //Assing id
@@ -26,11 +26,11 @@ const useLocalStorage = () => {
 
         //Save object
         window.localStorage.setItem('tasks', JSON.stringify(tasks));
-        setTasks(tasks);
+        //setTasks(tasks);
     }
 
     return {
-        tasks,
+        tasks: tasks,
         addTask,
     }
 };

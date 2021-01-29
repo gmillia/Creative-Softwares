@@ -24,7 +24,8 @@ const useStyles = makeStyles(theme => ({
 
 const Main = () => {
     const { tasks } = useLocalStorage();
-    console.log(tasks);
+    console.log('in: ', tasks)
+    //onsole.log(tasks);
     const [taskCount, setTaskCount] = useState(tasks.objects.length);
     const classes = useStyles();
 

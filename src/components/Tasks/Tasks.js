@@ -17,9 +17,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const Tasks = ({
-    
-}) => {
+const Tasks = () => {
     const { tasks } = useLocalStorage();
     const classes = useStyles();
 
@@ -31,9 +29,11 @@ const Tasks = ({
     return (
         <Grid container item xs={12} className={classes.tasksRoot} >
         {
-            tasks.objects.map((task, index) => {
+            tasks.map((task, index) => {
                 return (
-                    <Task key={index} task={task} />
+                    task.completed 
+                    ? null
+                    : <Task key={index} task={task} />
                 )
             })
         }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const useLocalStorage = () => {
 
-    const [tasks, setTasks] = useState(() => {
+    const [tasksObj, setTasksObj] = useState(() => {
         let localTasks = window.localStorage.getItem('tasks');
 
         if(localTasks !== null && localTasks !== undefined) {
@@ -14,14 +14,16 @@ const useLocalStorage = () => {
             id: 0,
         }
     });
-    const [total, setTotal] = useState(tasks.objects.length)
+    const [tasks, setTasks] = useState(tasksObj && tasksObj.objects ? tasksObj.objects : []);
+    const [total, setTotal] = useState(tasks && tasks.length ? tasks.length : 0)
 
     useEffect(() => {
         let isMounted = true;
         window.addEventListener('storage', () => {
-            //setTasks(JSON.parse(window.localStorage.getItem('tasks')));
             if(isMounted) {
-                setTasks(JSON.parse(window.localStorage.getItem('tasks')));
+                let localTasks = JSON.parse(window.localStorage.getItem('tasks'));
+                setTasks(localTasks && localTasks.object ? localTasks.object : []);
+                setTotal(localTasks && localTasks.objects ? localTasks.objects.length : 0)
             }
         })
 
@@ -31,25 +33,45 @@ const useLocalStorage = () => {
         }
     }, [])
 
+    const triggerWindow = (newTasks) => {
+        window.localStorage.setItem('tasks', JSON.stringify(newTasks));
+        window.dispatchEvent(new Event('storage'));
+    }
+
     const addTask = (newTask) => {
         //Assing id
-        newTask.id = tasks.id;
+        newTask.id = tasksObj.id;
         //Check for valid task name
         newTask.name = newTask.name.length ? newTask.name : 'Task ' + newTask.id;
         //Add new task to tasks list
-        tasks.objects.push(newTask);
+        tasks.push(newTask);
         //Increment id
-        tasks.id += 1;
+        tasksObj.id += 1;
 
+        tasksObj.objects = tasks;
         //Save object
-        window.localStorage.setItem('tasks', JSON.stringify(tasks));
-        window.dispatchEvent(new Event('storage'));
+        triggerWindow(tasksObj);
+    }
+
+    const removeTask = (taskToRemove) => {
+        let newTasks = tasks.filter(obj => obj.id !== taskToRemove.id);
+        tasks.objects = newTasks;
+        triggerWindow(tasks);
+    }
+
+    const changeTaskStatus = (taskToChange) => {
+        let changedTask = tasks.find(obj => obj.id === taskToChange.id);
+        changedTask.completed = !changedTask.completed;
+        tasksObj.tasks = tasks;
+        triggerWindow(tasksObj);
     }
 
     return {
         total,
         tasks, 
-        addTask
+        addTask,
+        removeTask,
+        changeTaskStatus,
     }
 };
 

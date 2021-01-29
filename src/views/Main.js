@@ -1,7 +1,7 @@
 import React from 'react';
 
 //COMPONENTS
-import { Tasks, NewTask } from 'components';
+import { Tasks, NewTask, DateDisplay, TotalTasks } from 'components';
 
 //MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -37,13 +37,14 @@ const Main = () => {
 
     return (
         <Grid container spacing={0} className={classes.mainRoot} justifyContent='center' >
-            <Grid container spacing={1} item xs={12} sm={10} md={8} className={classes.mainWrap} >
+            <Grid container item xs={12} sm={10} md={8} className={classes.mainWrap} >
                 <Grid container item xs={12} sm={8} className={classes.taskView}>
                     <Tasks />
                     <NewTask />
                 </Grid>
                 <Grid item xs={12} sm={4} style={{minHeight: 100}} >
-                    ILLIA
+                    <DateDisplay />
+                    <TotalTasks />
                 </Grid>
             </Grid>
         </Grid>

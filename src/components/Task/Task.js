@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 
+//HOOKS
+import { useLocalStorage } from 'hooks';
+
 //MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
+import { IconButton } from '@material-ui/core';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 const useStyles = makeStyles(theme => ({
     taskRoot: {
@@ -14,7 +19,16 @@ const useStyles = makeStyles(theme => ({
         marginTop: 5,
         marginBottom: 5,
         borderRadius: 5,
-        alignItems: 'center'
+        alignItems: 'center',
+        cursor: 'pointer'
+    },
+    checkBox: {
+        color: props => {
+            let priority = props.priority;
+            if(priority === 'Low') return '#5FCD8D';
+            if(priority === 'Medium') return '#FB8333';
+            if(priority === 'High') return '#FF6159';
+        }
     }
 }))
 
@@ -26,13 +40,25 @@ const useStyles = makeStyles(theme => ({
 const Task = ({
     task
 }) => {
+    const { removeTask, changeTaskStatus } = useLocalStorage();
     const [open, setOpen] = useState(false);
-    const classes = useStyles({ open: open });
+    const classes = useStyles({ open: open, priority: task.priority });
+
+    const handleCheckBoxClick = () => {
+        changeTaskStatus(task);
+    }
+
+    const handleRemoveTask = () => {
+        removeTask(task);
+    }
 
     return (
         <Grid container spacing={0} className={classes.taskRoot} >
-            <Checkbox disableFocusRipple disableRipple />
+            <Checkbox className={classes.checkBox} onClick={handleCheckBoxClick} />
             { task.name }
+            <IconButton onClick={handleRemoveTask} >
+                <CancelIcon />
+            </IconButton>
         </Grid>
     )
 };

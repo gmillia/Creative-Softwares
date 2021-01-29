@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useLocalStorage } from 'hooks';
+
 //COMPONENTS
 import { Task } from 'components';
 
@@ -9,21 +11,29 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     tasksRoot: {
-        display: 'flex'
+        display: 'flex',
+        flexDirection: 'column',
+        alignSelf: 'stretch'
     }
 }))
 
 const Tasks = ({
-    tasks=[]
+    
 }) => {
+    const { tasks } = useLocalStorage();
     const classes = useStyles();
 
+    //Liten to local storage changes
+    React.useEffect(() => {
+
+    }, [tasks])
+
     return (
-        <Grid item xs={12}>
+        <Grid container item xs={12} className={classes.tasksRoot} >
         {
-            tasks.map((task, index) => {
+            tasks.objects.map((task, index) => {
                 return (
-                    <Task task={task} />
+                    <Task key={index} task={task} />
                 )
             })
         }

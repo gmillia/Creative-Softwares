@@ -17,7 +17,10 @@ const useStyles = makeStyles(theme => ({
     newTaskRoot: {
         display: 'flex',
         alignItems: 'flex-end',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        top: 'auto',
+        bottom: 0,
+        position: 'sticky'
     },
     dialogRoot: {
         background: theme.palette.grey[500]

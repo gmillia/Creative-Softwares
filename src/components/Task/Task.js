@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 //COMPONENTS
-import { Calendar } from 'components';
+import { Calendar, TaskDueDate } from 'components';
 
 //HOOKS
 import { useLocalStorage } from 'hooks';
@@ -74,6 +74,7 @@ const Task = ({
                 <CancelIcon className={classes.delete} />
             </IconButton>
             <Calendar />
+            <TaskDueDate task={task} />
         </Grid>
     )
 };

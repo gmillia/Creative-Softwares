@@ -6,36 +6,30 @@ import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles(theme => ({
     dateRoot: {
+        maxWidth: 300,
+        letterSpacing: 0.26634,
+        color: '#545454',
         padding: '10px 10px 10px 10px',
         boxShadow: theme.shadows[2],
         borderRadius: 16,
         [theme.breakpoints.up('sm')]: {
-            padding: '25px 10px 25px 10px',
+            padding: '32px 16px 32px 16px',
             minWidth: 282,
             minHeight: 160
         }
     },
     dayName: {
-        fontSize: 25,
+        fontSize: 28,
         lineHeight: '90%',
-        [theme.breakpoints.up('sm')]: {
-            fontSize: 35,
-        }
     },
     monthDay: {
-        fontSize: 30,
+        fontSize: 36,
         lineHeight: '90%',
-        [theme.breakpoints.up('sm')]: {
-            fontSize: 40,
-        }
     },
     year: {
-        fontSize: 20,
-        color: theme.palette.grey[500],
+        fontSize: 28,
+        color: '#AFAFAF',
         lineHeight: '90%',
-        [theme.breakpoints.up('sm')]: {
-            fontSize: 30,
-        }
     }
 }))
 

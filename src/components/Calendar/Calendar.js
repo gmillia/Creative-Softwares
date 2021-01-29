@@ -36,8 +36,12 @@ const MobileCalendar = ({ date, setDate, open, setOpen }) => {
             open={open}
             value={date}
             onChange={newDate => setDate(newDate)}
-            renderInput={(params) => (
-                <TextField {...params} margin="normal" variant="standard" onClick={() => setOpen(!open)} />
+            renderInput={({ inputRef }) => (
+                <div>
+                    <IconButton ref={inputRef} onClick={() => setOpen(!open)}  >
+                        <EventRoundedIcon />
+                    </IconButton>
+                </div>
             )}
         />
     )

@@ -32,6 +32,9 @@ const useStyles = makeStyles(theme => ({
             if(priority === 'Medium') return '#FB8333';
             if(priority === 'High') return '#FF6159';
         }
+    },
+    delete: {
+        color: '#FF6159'
     }
 }))
 
@@ -68,7 +71,7 @@ const Task = ({
             <Checkbox className={classes.checkBox} onClick={handleCheckBoxClick} />
             { task.name }
             <IconButton onClick={handleRemoveTask} >
-                <CancelIcon />
+                <CancelIcon className={classes.delete} />
             </IconButton>
             <Calendar />
         </Grid>

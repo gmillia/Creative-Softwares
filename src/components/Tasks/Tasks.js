@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     tasksRoot: {
         display: 'flex',
         flexDirection: 'column',
-        alignSelf: 'stretch'
+        alignSelf: 'stretch',
     }
 }))
 

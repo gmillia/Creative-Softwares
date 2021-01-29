@@ -17,21 +17,34 @@ const useStyles = makeStyles(theme => ({
         borderRadius: 16,
         [theme.breakpoints.up('sm')]: {
             padding: '25px 10px 25px 10px',
-            marginTop: 15
+            marginTop: 32,
+            minWidth: 150,
         }
     },
     total: {
-        fontSize: 45,
+        color: '#265A88',
+        fontWeight: 800,
+        fontSize: 44,
         [theme.breakpoints.up('sm')]: {
-            fontSize: 55,
+            fontSize: 64,
         }
     },
+    tasksWrap: {
+        fontSize: 18,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     tasks: {
-        fontSize: 30,
-        color: blue[800],
-        [theme.breakpoints.up('sm')]: {
-            fontSize: 40,
-        }
+        fontWeight: 500,
+        letterSpacing: 0.364,
+        background: '#F6F6F6',
+        borderRadius: 8,
+        minWidth: 83,
+        minHeight: 32,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 }))
 
@@ -48,8 +61,10 @@ const TotalTasks = () => {
             <Grid item xs={12} className={classes.total} >
                 {total}
             </Grid>
-            <Grid item xs={12} className={classes.tasks} >
+            <Grid item xs={12} className={classes.tasksWrap} >
+                <div className={classes.tasks}>
                 Tasks
+                </div>
             </Grid>
         </Grid>
     )

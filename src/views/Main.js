@@ -25,15 +25,17 @@ const useStyles = makeStyles(theme => ({
         }
     },
     taskView: {
+        minHeight: '80%',
         display: 'flex',
         padding: 15,
         borderRadius: 16,
         boxShadow: theme.shadows[10]
     },
     sideWrap: {
+        minHeight: '10%',
         padding: 15,
         [theme.breakpoints.up('sm')]: {
-            padding: '0px 15px 0px 15px',
+            padding: '0px 15px 0px 80px',
         }
     }
 }))

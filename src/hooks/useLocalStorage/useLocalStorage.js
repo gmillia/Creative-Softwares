@@ -22,7 +22,7 @@ const useLocalStorage = () => {
         window.addEventListener('storage', () => {
             if(isMounted) {
                 let localTasks = JSON.parse(window.localStorage.getItem('tasks'));
-                setTasks(localTasks && localTasks.object ? localTasks.object : []);
+                setTasks(localTasks && localTasks.objects ? localTasks.objects : []);
                 setTotal(localTasks && localTasks.objects ? localTasks.objects.length : 0)
             }
         })
@@ -55,14 +55,16 @@ const useLocalStorage = () => {
 
     const removeTask = (taskToRemove) => {
         let newTasks = tasks.filter(obj => obj.id !== taskToRemove.id);
-        tasks.objects = newTasks;
-        triggerWindow(tasks);
+        tasksObj.objects = newTasks;
+        tasksObj.id -= 1;
+
+        triggerWindow(tasksObj);
     }
 
     const changeTaskStatus = (taskToChange) => {
         let changedTask = tasks.find(obj => obj.id === taskToChange.id);
         changedTask.completed = !changedTask.completed;
-        tasksObj.tasks = tasks;
+        tasksObj.objects = tasks;
         triggerWindow(tasksObj);
     }
 

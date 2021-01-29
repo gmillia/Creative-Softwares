@@ -23,7 +23,6 @@ const Tasks = () => {
 
     //Liten to local storage changes
     React.useEffect(() => {
-
     }, [tasks])
 
     return (

@@ -12,11 +12,10 @@ import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 import { IconButton } from '@material-ui/core';
 import CancelIcon from '@material-ui/icons/Cancel';
-import EventRoundedIcon from '@material-ui/icons/EventRounded';
 
 const useStyles = makeStyles(theme => ({
     taskRoot: {
-        minHeight: props => props.open ? 100 : 50,
+        minHeight: props => props.open ? 108 : 40,
         display: 'flex',
         padding: 5,
         border: '1px solid ' + theme.palette.grey[300],
@@ -46,7 +45,6 @@ const Task = ({
 }) => {
     const { removeTask, changeTaskStatus } = useLocalStorage();
     const [open, setOpen] = useState(false);
-    const [openCalendar, setOpenCalendar] = useState(false);
     const classes = useStyles({ open: open, priority: task.priority });
 
     const handleCheckBoxClick = () => {
@@ -55,10 +53,6 @@ const Task = ({
 
     const handleRemoveTask = () => {
         removeTask(task);
-    }
-
-    const handleCalendarOpen = () => {
-        setOpenCalendar(!openCalendar);
     }
 
     const handleDateChange = () => {
@@ -76,14 +70,7 @@ const Task = ({
             <IconButton onClick={handleRemoveTask} >
                 <CancelIcon />
             </IconButton>
-            <IconButton onClick={handleCalendarOpen}>
-                <EventRoundedIcon />
-            </IconButton>
-            {
-                openCalendar
-                ? <Calendar setDateCallback={handleDateChange} />
-                : null
-            }
+            <Calendar />
         </Grid>
     )
 };

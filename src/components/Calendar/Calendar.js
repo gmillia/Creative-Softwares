@@ -8,7 +8,10 @@ import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
+import DatePicker from '@material-ui/lab/DatePicker';
 import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
+import { IconButton } from '@material-ui/core';
+import EventRoundedIcon from '@material-ui/icons/EventRounded';
 
 const DesktopCalendar = ({ date, setDate, open, setOpen }) => {
     return (
@@ -16,7 +19,13 @@ const DesktopCalendar = ({ date, setDate, open, setOpen }) => {
             open={open}
             value={date} 
             onChange={newDate => setDate(newDate)}
-            renderInput={() => null}
+            renderInput={({ inputRef }) => (
+                <div>
+                    <IconButton ref={inputRef} onClick={() => setOpen(!open)}  >
+                        <EventRoundedIcon />
+                    </IconButton>
+                </div>
+            )}
         />
     )
 }

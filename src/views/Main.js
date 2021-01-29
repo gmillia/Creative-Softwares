@@ -10,7 +10,6 @@ import AppBar from '@material-ui/core/AppBar';
 
 const useStyles = makeStyles(theme => ({
     mainRoot: {
-        width: '100%',
         minHeight: '100vh',
         paddingTop: 0,
         paddingBottom: 0,
@@ -28,21 +27,28 @@ const useStyles = makeStyles(theme => ({
     taskView: {
         display: 'flex',
         padding: 15,
-        background: 'rgba(0,0,0,0.2)'
+        borderRadius: 16,
+        boxShadow: theme.shadows[10]
     },
+    sideWrap: {
+        padding: 15,
+        [theme.breakpoints.up('sm')]: {
+            padding: '0px 15px 0px 15px',
+        }
+    }
 }))
 
 const Main = () => {
     const classes = useStyles();
 
     return (
-        <Grid container spacing={0} className={classes.mainRoot} justifyContent='center' >
-            <Grid container item xs={12} sm={10} md={8} className={classes.mainWrap} >
-                <Grid container item xs={12} sm={8} className={classes.taskView}>
+        <Grid container spacing={0} className={classes.mainRoot} justifyContent='center'  >
+            <Grid container item xs={12} sm={10} md={8} className={classes.mainWrap}  >
+                <Grid container item xs={12} sm={8} className={classes.taskView} >
                     <Tasks />
                     <NewTask />
                 </Grid>
-                <Grid item xs={12} sm={4} style={{minHeight: 100}} >
+                <Grid container item xs={12} sm={4} className={classes.sideWrap} alignContent='flex-start' >
                     <DateDisplay />
                     <TotalTasks />
                 </Grid>

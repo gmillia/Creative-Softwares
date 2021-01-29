@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+//HOOKS
+import { useLocalStorage } from 'hooks';
 
 //COMPONENTS
 import { Tasks, NewTask } from 'components';
@@ -20,7 +23,16 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Main = () => {
+    const { tasks } = useLocalStorage();
+    console.log(tasks);
+    const [taskCount, setTaskCount] = useState(tasks.objects.length);
     const classes = useStyles();
+
+    useEffect(() => {
+        //console.log(tasks);
+        if(tasks.objects.length > taskCount) 
+        setTaskCount(tasks.objects.length)
+    }, [tasks])
 
     return (
         <Grid container spacing={0} className={classes.mainRoot} justify='center' >

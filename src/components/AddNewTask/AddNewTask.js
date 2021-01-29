@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 
 //FUNCTIONS
-import { addTask } from 'functions';
+import { useLocalStorage } from 'hooks';
 
 //COMPONENTS
 import { Calendar } from 'components';
@@ -14,7 +14,7 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles(thene => ({
+const useStyles = makeStyles(theme => ({
     buttonGroup: {
         display: 'flex',
         justifyContent: 'space-between',
@@ -27,20 +27,20 @@ const useStyles = makeStyles(thene => ({
         color: 'white',
     },
     low: {
-        backgroundColor: '#5FCD8D',
+        backgroundColor: props => props.priority === 'Low' || props.priority.length === 0 ? '#5FCD8D' : '#CBCBCB',
         '&:hover': {
             backgroundColor: '#55b87e'
         }
 
     },
     medium: {
-        background: '#FB8333',
+        backgroundColor: props => props.priority === 'Medium' || props.priority.length === 0 ? '#FB8333' : '#CBCBCB',
         '&:hover': {
             backgroundColor: '#e1752d'
         }
     },
     high: {
-        background: '#FF6159',
+        backgroundColor: props => props.priority === 'High'  || props.priority.length === 0 ? '#FF6159' : '#CBCBCB',
         '&:hover': {
             backgroundColor: '#e55750'
         }
@@ -61,29 +61,36 @@ const useStyles = makeStyles(thene => ({
     }
 }));
 
-const ButtonGroup = () => {
-    const classes = useStyles();
+const ButtonGroup = ({ setPriority, priority, classes }) => {
+    const handleClick = (newPriority) => {
+        if(setPriority instanceof Function) {
+            if(priority === newPriority) setPriority('');
+            else setPriority(newPriority);
+        }
+    }
 
     return (
         <Grid item xs={12} className={classes.buttonGroup}>
-            <Button className={clsx(classes.button, classes.low)} size='small' >
+            <Button className={clsx(classes.button, classes.low)} size='small' onClick={() => handleClick('Low')} >
                 Low
             </Button>
-            <Button className={clsx(classes.button, classes.medium)} size='small'>
+            <Button className={clsx(classes.button, classes.medium)} size='small' onClick={() => handleClick('Medium')}>
                 Medium
             </Button>
-            <Button className={clsx(classes.button, classes.high)} size='small'>
+            <Button className={clsx(classes.button, classes.high)} size='small' onClick={() => handleClick('High')}>
                 High
             </Button>
         </Grid>
     )
 }
 
-const AddNewTask = () => {
-    const classes = useStyles();
+const AddNewTask = ({ closeDialog }) => {
+    const { addTask } = useLocalStorage();
     const [taskName, setTaskName] = useState('');
     const [priority, setPriority] = useState('');
     const [date, setDate] = useState(new Date());
+
+    const classes = useStyles({ priority: priority });
 
     const handleTaskNameChange = (e) => {
         setTaskName(e.target.value);
@@ -94,7 +101,18 @@ const AddNewTask = () => {
             name: taskName,
             priority: priority,
             date: date,
-        })
+            completed: false,
+        });
+
+        handleCancel();
+    }
+
+    const handleCancel = () => {
+        if(closeDialog instanceof Function) closeDialog();
+    }
+
+    const handleSetPriority = (newPriority) => {
+        setPriority(newPriority);
     }
 
     return (
@@ -107,10 +125,10 @@ const AddNewTask = () => {
                         label='Task Name'
                         onChange={handleTaskNameChange}
                     />
-                    <ButtonGroup />
+                    <ButtonGroup setPriority={handleSetPriority} priority={priority} classes={classes} />
                     <Calendar setDateCallback={setDate} />
                     <Grid item xs={12} className={classes.actionButtons} >
-                        <Button size='small' className={classes.cancel} >
+                        <Button size='small' className={classes.cancel} onClick={handleCancel} >
                             Cancel
                         </Button>
                         <Button size='small' className={classes.create} onClick={addNewTask} >

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 //COMPONENTS
-import { AddNewTask } from 'components';
+import { AddNewTask, Feedback } from 'components';
 
 //MATERIAL UI
 import Grid from '@material-ui/core/Grid';
@@ -46,7 +46,7 @@ const NewTask = () => {
             <Dialog open={open} onClose={handleClose} className={classes.dialogRoot} >
                 <DialogTitle>Add New Task</DialogTitle>
                 <DialogContent>
-                    <AddNewTask />
+                    <AddNewTask closeDialog={handleClose}/>
                 </DialogContent>
             </Dialog>
         </Grid>

@@ -9,7 +9,6 @@ import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
 import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
-import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
 
 const DesktopCalendar = ({ date, setDate, open, setOpen }) => {
     return (
@@ -17,9 +16,7 @@ const DesktopCalendar = ({ date, setDate, open, setOpen }) => {
             open={open}
             value={date} 
             onChange={newDate => setDate(newDate)}
-            renderInput={(params) => (
-                <TextField {...params} margin="normal" variant='outlined' onClick={() => setOpen(!open)}/>
-            )}
+            renderInput={() => null}
         />
     )
 }

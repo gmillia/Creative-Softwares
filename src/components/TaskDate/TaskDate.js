@@ -6,6 +6,9 @@ import { useLocalStorage } from 'hooks';
 //COMPONENTS
 import { Calendar } from 'components';
 
+//MATERIAL UI
+import Tooltip from '@material-ui/core/Tooltip';
+
 const TaskDate = ({task}) => {
     const [date, setDate] = useState(task ? task.date : undefined);
     const { changeTaskDueDate } = useLocalStorage();
@@ -16,7 +19,13 @@ const TaskDate = ({task}) => {
     }
 
     return (
-        <Calendar setDateCallback={handleDateChange} initialDate={date} />
+        <div>
+            <Tooltip title='Change Task due date'>
+                <div>
+                    <Calendar setDateCallback={handleDateChange} initialDate={date} />
+                </div>
+            </Tooltip>
+        </div>
     )
 };
 

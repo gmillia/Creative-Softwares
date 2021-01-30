@@ -5,6 +5,7 @@ import { useLocalStorage } from 'hooks';
 
 //MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
 import Checkbox from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles(theme => ({
@@ -27,7 +28,11 @@ const CompleteTask = ({ task }) => {
     }
 
     return (
-        <Checkbox className={classes.checkBox} onClick={handleCheckBoxClick} />
+        <div>
+            <Tooltip title='Complete task' >
+                <Checkbox className={classes.checkBox} onClick={handleCheckBoxClick} />
+            </Tooltip>
+        </div>
     )
 };
 

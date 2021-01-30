@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
         padding: '10px 10px 10px 10px',
         boxShadow: theme.shadows[2],
         borderRadius: 16,
+        background: 'white',
         [theme.breakpoints.up('sm')]: {
             padding: '32px 16px 32px 16px',
             minWidth: 282,

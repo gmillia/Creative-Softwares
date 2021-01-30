@@ -15,9 +15,21 @@
 			font-family: 'Lato', sans-serif;
 		}
 		#leftImage {
+			z-index: 0;
 			position: absolute;
 			left: 0;
 			bottom: 0;
+		}
+		#rightImage {
+			z-index: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+		@media only screen and (max-width: 600px) {
+			#leftImage, #rightImage {
+				display: none
+			}
 		}
 	</style>
 </head>
@@ -25,10 +37,10 @@
 <body>
 	<noscript>You need to enable JavaScript to run this app.</noscript>
 	<div id='body'>
-		<div id="root" style='z-index: 100;'>
-
-		</div>
 		<img src='./assets/pink.svg' alt=' ' id="leftImage" />
+		<img src='./assets/blue.svg' alt=' ' id="rightImage" />
+		<div id="root" style='z-index: 100; position: relative'>
+		</div>
 	</div>
 </body>
 

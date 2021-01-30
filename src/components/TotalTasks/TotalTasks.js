@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
         textAlign: 'center',
         boxShadow: theme.shadows[2],
         borderRadius: 16,
+        background: 'white',
         [theme.breakpoints.up('sm')]: {
             padding: '25px 10px 25px 10px',
             marginTop: 32,

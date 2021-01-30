@@ -8,3 +8,5 @@ export * from './DateDisplay';
 export * from './TotalTasks';
 export * from './TaskDueDate';
 export * from './PriorityButtons';
+export * from './CompleteTask';
+export * from './RemoveTask';

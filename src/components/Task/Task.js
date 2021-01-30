@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 //COMPONENTS
-import { Calendar, TaskDueDate } from 'components';
+import { Calendar, TaskDueDate, PriorityButtons, CompleteTask, RemoveTask } from 'components';
 
 //HOOKS
 import { useLocalStorage } from 'hooks';
@@ -9,9 +9,6 @@ import { useLocalStorage } from 'hooks';
 //MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Checkbox from '@material-ui/core/Checkbox';
-import { IconButton } from '@material-ui/core';
-import CancelIcon from '@material-ui/icons/Cancel';
 
 const useStyles = makeStyles(theme => ({
     taskRoot: {
@@ -25,17 +22,6 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         cursor: 'pointer'
     },
-    checkBox: {
-        color: props => {
-            let priority = props.priority;
-            if(priority === 'Low') return '#5FCD8D';
-            if(priority === 'Medium') return '#FB8333';
-            if(priority === 'High') return '#FF6159';
-        }
-    },
-    delete: {
-        color: '#FF6159'
-    }
 }))
 
 /**
@@ -50,13 +36,6 @@ const Task = ({
     const [open, setOpen] = useState(false);
     const classes = useStyles({ open: open, priority: task.priority });
 
-    const handleCheckBoxClick = () => {
-        changeTaskStatus(task);
-    }
-
-    const handleRemoveTask = () => {
-        removeTask(task);
-    }
 
     const handleDateChange = () => {
 
@@ -68,13 +47,12 @@ const Task = ({
 
     return (
         <Grid container spacing={0} className={classes.taskRoot} >
-            <Checkbox className={classes.checkBox} onClick={handleCheckBoxClick} />
+            <CompleteTask task={task} />
             { task.name }
-            <IconButton onClick={handleRemoveTask} >
-                <CancelIcon className={classes.delete} />
-            </IconButton>
+            <RemoveTask task={task} />
             <Calendar />
             <TaskDueDate task={task} />
+            <PriorityButtons />
         </Grid>
     )
 };

@@ -72,7 +72,7 @@ const AddNewTask = ({ closeDialog }) => {
                         label='Task Name'
                         onChange={handleTaskNameChange}
                     />
-                    <PriorityButtons />
+                    <PriorityButtons setPriorityCallback={handleSetPriority} />
                     <Calendar setDateCallback={setDate} />
                     <Grid item xs={12} className={classes.actionButtons} >
                         <Button size='small' className={classes.cancel} onClick={handleCancel} >

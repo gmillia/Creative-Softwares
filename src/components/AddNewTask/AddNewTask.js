@@ -16,13 +16,15 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
     create: {
-        background: 'black',
+        background: '#1F1F1F',
         marginLeft: 10,
-        color: 'white'
+        color: 'white',
+        '&:hover': {
+            backgroundColor: '#1F1F1F'
+        }
     },
     cancel: {
-        background: 'red',
-        color: 'white'
+
     },
     actionButtons: {
         display: 'flex',
@@ -72,9 +74,12 @@ const AddNewTask = ({ closeDialog }) => {
                         label='Task Name'
                         onChange={handleTaskNameChange}
                         style={{paddingBottom: 16}}
+                        inputProps={{ maxLength: 100 }}
                     />
                     <PriorityButtons setPriorityCallback={handleSetPriority} />
-                    <Calendar setDateCallback={setDate} />
+                    <Grid item xs={12} display='flex' alignItems='center' >
+                        Pick date: <Calendar setDateCallback={setDate} />
+                    </Grid>
                     <Grid item xs={12} className={classes.actionButtons} >
                         <Button size='small' className={classes.cancel} onClick={handleCancel} >
                             Cancel

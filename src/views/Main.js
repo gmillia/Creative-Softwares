@@ -43,8 +43,8 @@ const Main = () => {
 
     return (
         <Grid container spacing={0} className={classes.mainRoot} justifyContent='center'  >
-            <Grid container item xs={12} sm={10} md={8} className={classes.mainWrap}  >
-                <Grid container item xs={12} sm={8} className={classes.taskView} >
+            <Grid container item xs={12} sm={10} md={8} className={classes.mainWrap} alignContent='flex-end'  >
+                <Grid container item xs={12} sm={8} className={classes.taskView} alignContent='stretch' >
                     <Tasks />
                     <NewTask />
                 </Grid>

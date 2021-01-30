@@ -9,9 +9,9 @@ import Grid from '@material-ui/core/Grid';
 const TaskHead = ({ task, expanded=false }) => {
     return (
         <Grid container alignItems="center" display="flex" >
-            <Grid item xs={4} sm={6} display='flex' alignItems='center' justifyContent='flex-start'>
+            <Grid  container item xs={4} sm={6} display='flex' alignItems='center' justifyContent='flex-start'>
                 <CompleteTask task={task} />
-                {task.name}
+                <Grid item style={{wordBreak: 'break-all'}}>{task.name}</Grid>
             </Grid>
             <Grid item xs={8} sm={6} display='flex' alignItems='center' justifyContent='flex-end'>
                 {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 //COMPONENTS
-import { CompleteTask, TaskDueDate, RemoveTask, Calendar, PriorityButtons } from 'components';
+import { CompleteTask, TaskDueDate, RemoveTask, Calendar, TaskDate } from 'components';
 
 //MATERIAL UI
 import Grid from '@material-ui/core/Grid';
@@ -22,7 +22,7 @@ const TaskHead = ({ task, expanded=false }) => {
                 <TaskDueDate task={task} />
                 {
                     expanded 
-                    ? <Calendar />
+                    ? <TaskDate task={task} />
                     : null
                 }
             </Grid> 

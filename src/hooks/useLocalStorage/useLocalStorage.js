@@ -75,13 +75,21 @@ const useLocalStorage = () => {
         triggerWindow(tasksObj);
     }
 
+    const changeTaskDueDate = (taskToChange, newDate) => {
+        let changedTask = tasks.find(obj => obj.id === taskToChange.id);
+        if(changedTask) changedTask.date = newDate;
+        tasksObj.objects = tasks;
+        triggerWindow(tasksObj);
+    }
+
     return {
         total,
         tasks, 
         addTask,
         removeTask,
         changeTaskStatus,
-        changeTaskPriority
+        changeTaskPriority,
+        changeTaskDueDate,
     }
 };
 

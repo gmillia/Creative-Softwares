@@ -79,11 +79,11 @@ const MobileCalendar = ({ date, setDate, open, setOpen, displayDate=false }) => 
     )
 }
 
-function Calendar({ setDateCallback, displayDate=false }) {
+function Calendar({ setDateCallback, displayDate=false, initialDate }) {
     const theme = useTheme();
     const desktop = useMediaQuery(theme.breakpoints.up('sm'));
 
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState(initialDate ? initialDate : new Date());
     const [open, setOpen] = useState(false);
 
     const handleDateChange = (newDate) => {

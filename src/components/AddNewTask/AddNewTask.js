@@ -71,6 +71,7 @@ const AddNewTask = ({ closeDialog }) => {
                         size='small'
                         label='Task Name'
                         onChange={handleTaskNameChange}
+                        style={{paddingBottom: 16}}
                     />
                     <PriorityButtons setPriorityCallback={handleSetPriority} />
                     <Calendar setDateCallback={setDate} />

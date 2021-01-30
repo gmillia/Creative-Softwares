@@ -21,7 +21,7 @@ const DesktopCalendar = ({ date, setDate, open, setOpen }) => {
             onChange={newDate => setDate(newDate)}
             renderInput={({ inputRef }) => (
                 <div>
-                    <IconButton ref={inputRef} onClick={() => setOpen(!open)}  >
+                    <IconButton ref={inputRef} onClick={(event) => { event.stopPropagation(); setOpen(!open) }}  >
                         <EventRoundedIcon />
                     </IconButton>
                 </div>
@@ -38,7 +38,7 @@ const MobileCalendar = ({ date, setDate, open, setOpen }) => {
             onChange={newDate => setDate(newDate)}
             renderInput={({ inputRef }) => (
                 <div>
-                    <IconButton ref={inputRef} onClick={() => setOpen(!open)}  >
+                    <IconButton ref={inputRef} onClick={(event) => { event.stopPropagation(); setOpen(!open) }}  >
                         <EventRoundedIcon />
                     </IconButton>
                 </div>

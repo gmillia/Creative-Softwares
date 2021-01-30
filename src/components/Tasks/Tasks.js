@@ -3,28 +3,32 @@ import React, { useState, useEffect } from 'react';
 import { useLocalStorage } from 'hooks';
 
 //COMPONENTS
-import { Task } from 'components';
+import { Task, TaskHead, PriorityButtons } from 'components';
 
 //MATERIAL UI
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-    tasksRoot: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignSelf: 'stretch',
+    expanded: {
+        margin: "5px auto !important"
+    },
+    content: {
+        transition: 'none !important'
+    },
+    details: {
+        padding: '0px 16px 16px 16px'
     }
 }))
 
 const Tasks = () => {
+    const classes = useStyles();
     const { tasks } = useLocalStorage();
     const [expanded, setExpanded] = useState(false);
-    const classes = useStyles();
 
     const handleExpansion = (id) => (event, isExpanded) => {
         setExpanded(isExpanded ? id : false);
@@ -35,7 +39,7 @@ const Tasks = () => {
     }, [tasks])
 
     return (
-        <Grid container item xs={12} className={classes.tasksRoot} >
+        <Grid container item xs={12} display='flex' flexDirection='column' >
         {
             tasks.map((task, index) => {
                 return (
@@ -44,12 +48,15 @@ const Tasks = () => {
                     : 
                     <Accordion key={index} expanded={expanded === index} onChange={handleExpansion(index)} >
                         <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
+                            classes={{
+                                expanded: classes.expanded,
+                                content: classes.content
+                            }}
                         >
-                    
+                            <TaskHead task={task} expanded={expanded === index} />
                         </AccordionSummary>
-                        <AccordionDetails>
-                            <Task key={index} task={task} />
+                        <AccordionDetails classes={{ root: classes.details }} >
+                            <PriorityButtons initialPriority={task.priority} />
                         </AccordionDetails>
                     </Accordion>
                 )

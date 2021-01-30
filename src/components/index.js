@@ -10,3 +10,4 @@ export * from './TaskDueDate';
 export * from './PriorityButtons';
 export * from './CompleteTask';
 export * from './RemoveTask';
+export * from './TaskHead';

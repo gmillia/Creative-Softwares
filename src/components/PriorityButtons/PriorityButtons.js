@@ -7,10 +7,6 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
-    buttonGroup: {
-        display: 'flex',
-        paddingTop: 16,
-    },
     button: {
         padding: '4px 16px',
         color: 'white',
@@ -59,7 +55,7 @@ const PriorityButtons = ({ setPriorityCallback, initialPriority }) => {
     }
 
     return (
-        <Grid item xs={12} className={classes.buttonGroup}>
+        <Grid item display='flex' alignItems='center' justifyContent='flex-end' >
             <Button className={clsx(classes.button, classes.low)} size='small' onClick={() => handleClick('Low')} >
                 Low
             </Button>

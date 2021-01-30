@@ -28,7 +28,11 @@ const useStyles = makeStyles(theme => ({
         padding: 15,
         borderRadius: 16,
         boxShadow: theme.shadows[10],
-        background: 'white'
+        background: 'white',
+        minHeight: "80%",
+        [theme.breakpoints.up('sm')]: {
+            minHeight: '100%'
+        }
     },
     sideWrap: {
         padding: 15,

@@ -46,7 +46,7 @@ const NewTask = () => {
                     <AddCircleIcon color='error' fontSize='large' />
                 </IconButton>
             </Tooltip>
-            <Dialog open={open} onClose={handleClose} className={classes.dialogRoot} >
+            <Dialog open={open} onClose={handleClose} >
                 <DialogTitle>Add New Task</DialogTitle>
                 <DialogContent>
                     <AddNewTask closeDialog={handleClose}/>

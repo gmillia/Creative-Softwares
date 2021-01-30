@@ -9,11 +9,11 @@ import Grid from '@material-ui/core/Grid';
 const TaskHead = ({ task, expanded=false }) => {
     return (
         <Grid container alignItems="center" display="flex" >
-            <Grid item xs={6} display='flex' alignItems='center' justifyContent='flex-start'>
+            <Grid item xs={4} sm={6} display='flex' alignItems='center' justifyContent='flex-start'>
                 <CompleteTask task={task} />
                 {task.name}
             </Grid>
-            <Grid item xs={6} display='flex' alignItems='center' justifyContent='flex-end'>
+            <Grid item xs={8} sm={6} display='flex' alignItems='center' justifyContent='flex-end'>
                 {
                     expanded 
                     ? <RemoveTask task={task} />

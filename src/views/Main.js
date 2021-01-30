@@ -6,7 +6,6 @@ import { Tasks, NewTask, DateDisplay, TotalTasks } from 'components';
 //MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import AppBar from '@material-ui/core/AppBar';
 
 const useStyles = makeStyles(theme => ({
     mainRoot: {

@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles(theme => ({
     dateRoot: {
-        maxWidth: 300,
         letterSpacing: 0.26634,
         color: '#545454',
         padding: '10px 10px 10px 10px',
@@ -15,7 +14,7 @@ const useStyles = makeStyles(theme => ({
         background: 'white',
         [theme.breakpoints.up('sm')]: {
             padding: '32px 16px 32px 16px',
-            minWidth: 282,
+            minWidth: 250,
             minHeight: 160
         }
     },
@@ -25,12 +24,10 @@ const useStyles = makeStyles(theme => ({
     },
     monthDay: {
         fontSize: 36,
-        lineHeight: '90%',
     },
     year: {
         fontSize: 28,
         color: '#AFAFAF',
-        lineHeight: '90%',
     }
 }))
 
@@ -43,14 +40,14 @@ const DateDisplay = () => {
     const year = date.getFullYear();
 
     return (
-        <Grid container item xs={8} sm={12} className={classes.dateRoot} >
-            <Grid item xs={12} className={classes.dayName} >
+        <Grid item className={classes.dateRoot} display='flex' flexDirection='column' >
+            <Grid item className={classes.dayName} >
                 {dayName}
             </Grid>
-            <Grid item xs={12} className={classes.monthDay} >
+            <Grid item className={classes.monthDay} >
                 {data}, {day}
             </Grid>
-            <Grid item xs={12} className={classes.year} >
+            <Grid item className={classes.year} >
                 {year}
             </Grid>
         </Grid>

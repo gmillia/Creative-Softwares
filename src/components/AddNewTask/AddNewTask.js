@@ -78,7 +78,7 @@ const AddNewTask = ({ closeDialog }) => {
                     />
                     <PriorityButtons setPriorityCallback={handleSetPriority} />
                     <Grid item xs={12} display='flex' alignItems='center' >
-                        Pick date: <Calendar setDateCallback={setDate} />
+                        <Calendar setDateCallback={setDate} displayDate />
                     </Grid>
                     <Grid item xs={12} className={classes.actionButtons} >
                         <Button size='small' className={classes.cancel} onClick={handleCancel} >

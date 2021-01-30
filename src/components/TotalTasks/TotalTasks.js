@@ -6,7 +6,6 @@ import { useLocalStorage } from 'hooks';
 //MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { blue } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
     totalTasks: {
@@ -53,16 +52,16 @@ const TotalTasks = () => {
     const classes = useStyles();
     const { total } = useLocalStorage();
 
+    //Listen to total changes
     useEffect(() => {
-
     }, [total])
 
     return (
-        <Grid item xs={4} sm={6} className={classes.totalTasks} >
-            <Grid item xs={12} className={classes.total} >
+        <Grid item sm={6} className={classes.totalTasks} >
+            <Grid item className={classes.total} >
                 {total}
             </Grid>
-            <Grid item xs={12} className={classes.tasksWrap} >
+            <Grid item className={classes.tasksWrap} >
                 <div className={classes.tasks}>
                 Tasks
                 </div>

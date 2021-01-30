@@ -32,8 +32,9 @@ const useStyles = makeStyles(theme => ({
     },
     sideWrap: {
         padding: 15,
+        justifyContent: 'space-between',
         [theme.breakpoints.up('sm')]: {
-            padding: '0px 15px 0px 80px',
+            padding: '0px 15px 0px 64px',
         }
     }
 }))
@@ -48,7 +49,7 @@ const Main = () => {
                     <Tasks />
                     <NewTask />
                 </Grid>
-                <Grid container item xs={12} sm={4} className={classes.sideWrap} alignContent='flex-start' >
+                <Grid container item xs={12} sm={4} className={classes.sideWrap} display='flex' alignContent='flex-start' >
                     <DateDisplay />
                     <TotalTasks />
                 </Grid>

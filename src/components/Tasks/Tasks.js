@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocalStorage } from 'hooks';
 
 //COMPONENTS
-import { Task, TaskHead, PriorityButtons } from 'components';
+import { Task, TaskHead, PriorityButtons, TaskPriority } from 'components';
 
 //MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -56,7 +56,7 @@ const Tasks = () => {
                             <TaskHead task={task} expanded={expanded === index} />
                         </AccordionSummary>
                         <AccordionDetails classes={{ root: classes.details }} >
-                            <PriorityButtons initialPriority={task.priority} />
+                            <TaskPriority task={task} />
                         </AccordionDetails>
                     </Accordion>
                 )

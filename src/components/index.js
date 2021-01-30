@@ -11,3 +11,4 @@ export * from './PriorityButtons';
 export * from './CompleteTask';
 export * from './RemoveTask';
 export * from './TaskHead';
+export * from './TaskPriority';

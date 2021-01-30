@@ -63,7 +63,14 @@ const useLocalStorage = () => {
 
     const changeTaskStatus = (taskToChange) => {
         let changedTask = tasks.find(obj => obj.id === taskToChange.id);
-        changedTask.completed = !changedTask.completed;
+        if(changedTask) changedTask.completed = !changedTask.completed;
+        tasksObj.objects = tasks;
+        triggerWindow(tasksObj);
+    }
+
+    const changeTaskPriority = (taskToChange, newPriority) => {
+        let changedTask = tasks.find(obj => obj.id === taskToChange.id);
+        if(changedTask) changedTask.priority = newPriority;
         tasksObj.objects = tasks;
         triggerWindow(tasksObj);
     }
@@ -74,6 +81,7 @@ const useLocalStorage = () => {
         addTask,
         removeTask,
         changeTaskStatus,
+        changeTaskPriority
     }
 };
 

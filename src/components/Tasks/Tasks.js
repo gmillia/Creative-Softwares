@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useLocalStorage } from 'hooks';
 
 //COMPONENTS
-import { TaskHead, TaskPriority } from 'components';
+import { TaskHead, TaskPriority, Task } from 'components';
 
 //MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -36,11 +36,11 @@ const Tasks = ({ pending=false }) => {
     const filteredTasks = tasks.filter(obj => pending ? !obj.completed : obj.completed);
     const [expanded, setExpanded] = useState(false);
 
-    const handleExpansion = (id) => (event, isExpanded) => {
-        setExpanded(isExpanded ? id : false);
+    const handleExpansion = (id) => {
+        setExpanded(id);
     }
 
-    //Liten to local storage changes
+    //Liten to local storage changes and tab changes
     useEffect(() => {
         setExpanded(false);
     }, [tasks, pending])
@@ -48,23 +48,9 @@ const Tasks = ({ pending=false }) => {
     return (
         <Grid container item xs={12} display='flex' flexDirection='column' >
         {
-            filteredTasks.map((task, index) => {
-                return (
-                    <Accordion key={index} expanded={expanded === index} onChange={handleExpansion(index)} >
-                        <AccordionSummary
-                            classes={{
-                                expanded: classes.expanded,
-                                content: classes.content
-                            }}
-                        >
-                            <TaskHead task={task} expanded={expanded === index} />
-                        </AccordionSummary>
-                        <AccordionDetails classes={{ root: classes.details }} >
-                            <TaskPriority task={task} />
-                        </AccordionDetails>
-                    </Accordion>
-                )
-            })
+            filteredTasks.map((task, index) => (
+                <Task key={index} task={task} expanded={expanded === task.id} setExpanded={handleExpansion} />
+            ))
         }
         </Grid>
     )

@@ -13,3 +13,4 @@ export * from './TaskHead';
 export * from './TaskPriority';
 export * from './TaskDate';
 export * from './FakeTabs';
+export * from './Task';

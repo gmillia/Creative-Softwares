@@ -27,29 +27,32 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
+/**
+ * Component which displays Plus sign on the right bottom of the Tasks view. Controls opening and closing of the Dialog in which new Task can be created.
+ */
 const NewTask = () => {
     const classes = useStyles();
-    const [open, setOpen] = useState(false);
+    const [dialogOpen, setDialogOpen] = useState(false);
 
-    const handleOpen = () => {
-        setOpen(true);
+    const handleDialogOpen = () => {
+        setDialogOpen(true);
     }
 
-    const handleClose = () => {
-        setOpen(false);
+    const handleDialogClose = () => {
+        setDialogOpen(false);
     }
 
     return (
         <Grid item xs={12} className={classes.newTaskRoot} >
             <Tooltip title='Add new Task' >
-                <IconButton onClick={handleOpen} >
+                <IconButton onClick={handleDialogOpen} >
                     <AddCircleIcon color='error' fontSize='large' />
                 </IconButton>
             </Tooltip>
-            <Dialog open={open} onClose={handleClose} >
+            <Dialog open={dialogOpen} onClose={handleDialogClose} >
                 <DialogTitle>Add New Task</DialogTitle>
                 <DialogContent>
-                    <AddNewTask closeDialog={handleClose}/>
+                    <AddNewTask closeDialog={handleDialogClose}/>
                 </DialogContent>
             </Dialog>
         </Grid>

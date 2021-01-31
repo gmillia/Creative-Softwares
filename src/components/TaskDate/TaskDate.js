@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 //HOOKS
 import { useLocalStorage } from 'hooks';
@@ -9,6 +10,10 @@ import { Calendar } from 'components';
 //MATERIAL UI
 import Tooltip from '@material-ui/core/Tooltip';
 
+/**
+ * Component used to display Calendar for the Task, and to (possibly) change Task due date (if needed).
+ * @param {Object} task Task object. 
+ */
 const TaskDate = ({task}) => {
     const [date, setDate] = useState(task ? task.date : undefined);
     const { changeTaskDueDate } = useLocalStorage();
@@ -28,5 +33,9 @@ const TaskDate = ({task}) => {
         </div>
     )
 };
+
+TaskDate.propTypes = {
+    task: PropTypes.object.isRequired,
+}
 
 export default TaskDate;

@@ -31,6 +31,9 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
+/**
+ * Component which displays current date.
+ */
 const DateDisplay = () => {
     const classes = useStyles();
     const date = new Date();

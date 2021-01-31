@@ -48,6 +48,9 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
+/**
+ * Component which displays number of total Tasks present in the local storage.
+ */
 const TotalTasks = () => {
     const classes = useStyles();
     const { total } = useLocalStorage();

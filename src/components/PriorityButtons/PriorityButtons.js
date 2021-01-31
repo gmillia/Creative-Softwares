@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 
 //MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -39,6 +40,12 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
+/**
+ * Component which display 3 buttons used to set priority for the Task.
+ * 
+ * @param {Function} setPriorityCallback    Callback function which can be used to set priority in the parent component.
+ * @param {Object}  task                    Task object. 
+ */
 const PriorityButtons = ({ setPriorityCallback, task }) => {
     const [priority, setPriority] = useState(task ? task.priority : undefined);
     const classes = useStyles({ priority: priority });
@@ -72,5 +79,10 @@ const PriorityButtons = ({ setPriorityCallback, task }) => {
         </Grid>
     )
 };
+
+PriorityButtons.propTypes = {
+    setPriorityCallback: PropTypes.func,
+    task: PropTypes.object,
+}
 
 export default PriorityButtons;

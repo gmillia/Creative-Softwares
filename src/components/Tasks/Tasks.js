@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
+//HOOKS
 import { useLocalStorage } from 'hooks';
 
 //COMPONENTS
@@ -23,7 +25,11 @@ const useStyles = makeStyles(theme => ({
         padding: '0px 16px 16px 16px'
     }
 }))
-
+/**
+ * Component which display Tasks based on their completion. That is, it filters tasks using pending param. 
+ * 
+ * @param {Boolean} pending Specifies whether to filter tasks which are currently not completed or not.  
+ */
 const Tasks = ({ pending=false }) => {
     const classes = useStyles();
     const { tasks } = useLocalStorage();
@@ -62,6 +68,10 @@ const Tasks = ({ pending=false }) => {
         }
         </Grid>
     )
+}
+
+Tasks.propTypes = {
+    pending: PropTypes.bool,
 }
 
 export default Tasks;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 
 //MATERIAL ui
 import Grid from '@material-ui/core/Grid';
@@ -23,6 +24,10 @@ const useStyles = makeStyles(theme => ({
 
 const LABELS = ['Pending', 'Completed'];
 
+/**
+ * Component which is used as FakeTabs. 
+ * @param {Function} setTabCallback Callback function which can be used to set current tab in the parent component. 
+ */
 const FakeTabs = ({ setTabCallback }) => {
     const [tab, setTab] = useState(LABELS[0]);
     const classes = useStyles();
@@ -54,5 +59,9 @@ const FakeTabs = ({ setTabCallback }) => {
         </Grid>
     )
 };
+
+FakeTabs.propTypes = {
+    setTabCallback: PropTypes.func,
+}
 
 export default FakeTabs;

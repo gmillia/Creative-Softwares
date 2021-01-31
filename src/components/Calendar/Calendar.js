@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 //MATERIAL UI CALENDAR
 import Grid from '@material-ui/core/Grid';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
@@ -12,6 +12,9 @@ import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
 import { IconButton } from '@material-ui/core';
 import EventRoundedIcon from '@material-ui/icons/EventRounded';
 
+/**
+ * Helper component to be used when Calendar needs to be used with the input field.
+ */
 const WithDate = ({ params }) => {
     const ref = params ? params.inputRef : null;
     const inputProps = params ? params.inputProps : null;
@@ -28,6 +31,9 @@ const WithDate = ({ params }) => {
     )
 }
 
+/**
+ * Helper component to be used when Calendar needs to be displayed without an input field.
+ */
 const WithoutDate = ({ setOpen, open, params }) => {
     const ref = params ? params.inputRef : null;
     return (
@@ -39,6 +45,14 @@ const WithoutDate = ({ setOpen, open, params }) => {
     )
 }
 
+/**
+ * Component which displays Calendar on Desktop.
+ * @param {String}      date    current date value
+ * @param {Function}    setDate Callback function which is used to set new date. 
+ * @param {Boolean}     open    Specifies whether Calendar is opened.
+ * @param {Function}    setOpen Callback function used to control whether or not Calendar is open.
+ * @param {Boolean}     displayDate Specifies whether input field should be displayed along with the Calendar icon.
+ */
 const DesktopCalendar = ({ date, setDate, open, setOpen, displayDate=false }) => {
     return (
         <DesktopDatePicker
@@ -59,6 +73,14 @@ const DesktopCalendar = ({ date, setDate, open, setOpen, displayDate=false }) =>
     )
 }
 
+/**
+ * Component which displays Calendar on Mobile.
+ * @param {String}      date    current date value
+ * @param {Function}    setDate Callback function which is used to set new date. 
+ * @param {Boolean}     open    Specifies whether Calendar is opened.
+ * @param {Function}    setOpen Callback function used to control whether or not Calendar is open.
+ * @param {Boolean}     displayDate Specifies whether input field should be displayed along with the Calendar icon.
+ */
 const MobileCalendar = ({ date, setDate, open, setOpen, displayDate=false }) => {
     return (
         <MobileDatePicker 
@@ -79,6 +101,13 @@ const MobileCalendar = ({ date, setDate, open, setOpen, displayDate=false }) => 
     )
 }
 
+/**
+ * Component which displays calendar.
+ * 
+ * @param {Function}    setDateCallback     Callback function which can be called when date changes and 'parent' component needs to receive date update.
+ * @param {Boolean}     displayDate         Specifies whether or not to dispplay input field with the date in it [DEFAULT: False]
+ * @param {String}      initialDate         Specifies the date that calendar is going to use as its default value.  
+ */
 function Calendar({ setDateCallback, displayDate=false, initialDate }) {
     const theme = useTheme();
     const desktop = useMediaQuery(theme.breakpoints.up('sm'));
@@ -103,5 +132,11 @@ function Calendar({ setDateCallback, displayDate=false, initialDate }) {
 
     )
 };
+
+Calendar.propTypes = {
+    setDateCallback: PropTypes.func,
+    displayDate: PropTypes.bool,
+    initialDate: PropTypes.any,
+}
 
 export default Calendar;

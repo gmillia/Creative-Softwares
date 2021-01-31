@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 //COMPONENTS
 import { CompleteTask, TaskDueDate, RemoveTask, TaskDate } from 'components';
@@ -6,6 +7,13 @@ import { CompleteTask, TaskDueDate, RemoveTask, TaskDate } from 'components';
 //MATERIAL UI
 import Grid from '@material-ui/core/Grid';
 
+/**
+ * Component which displays information about Task in the header of the Task view. Displays different information based
+ * on whether Task is expanded or not. 
+ * 
+ * @param {Object} task Task object
+ * @param {Boolean} expanded Specifies whether Task is in the expanded view or not. [DEFAULT: False] 
+ */
 const TaskHead = ({ task, expanded=false }) => {
     return (
         <Grid container alignItems="center" display="flex" >
@@ -29,5 +37,10 @@ const TaskHead = ({ task, expanded=false }) => {
         </Grid>
     )
 };
+
+TaskHead.propTypes = {
+    task: PropTypes.object.isRequired,
+    expanded: PropTypes.bool,
+}
 
 export default TaskHead;

@@ -1,0 +1,1 @@
+Folder contains components which are used in the combination with other components to form views.

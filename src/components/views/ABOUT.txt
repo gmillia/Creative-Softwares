@@ -1,0 +1,1 @@
+Folder contains components which form views (viewable components formed from multiple sub-components from parts).

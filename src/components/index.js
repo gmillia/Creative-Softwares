@@ -1,4 +1,3 @@
-export * from './Task';
 export * from './Tasks';
 export * from './NewTask';
 export * from './AddNewTask';
@@ -13,3 +12,4 @@ export * from './RemoveTask';
 export * from './TaskHead';
 export * from './TaskPriority';
 export * from './TaskDate';
+export * from './FakeTabs';

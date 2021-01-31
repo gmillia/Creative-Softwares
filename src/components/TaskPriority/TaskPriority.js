@@ -16,7 +16,7 @@ const TaskPriority = ({ task }) => {
     };
 
     return (
-        <PriorityButtons setPriorityCallback={handlePriorityChange} initialPriority={priority} />
+        <PriorityButtons setPriorityCallback={handlePriorityChange} task={task} />
     )
 };
 

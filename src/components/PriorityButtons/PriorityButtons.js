@@ -39,9 +39,13 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const PriorityButtons = ({ setPriorityCallback, initialPriority }) => {
-    const [priority, setPriority] = useState(initialPriority);
+const PriorityButtons = ({ setPriorityCallback, task }) => {
+    const [priority, setPriority] = useState(task ? task.priority : undefined);
     const classes = useStyles({ priority: priority });
+    
+    React.useEffect(() => {
+        setPriority(task ? task.priority : undefined)
+    }, [task])
 
     const handleClick = (newPriority) => {
         if(priority === newPriority) {

@@ -25,9 +25,10 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const Tasks = () => {
+const Tasks = ({ pending=false }) => {
     const classes = useStyles();
     const { tasks } = useLocalStorage();
+    const filteredTasks = tasks.filter(obj => pending ? !obj.completed : obj.completed);
     const [expanded, setExpanded] = useState(false);
 
     const handleExpansion = (id) => (event, isExpanded) => {
@@ -36,16 +37,14 @@ const Tasks = () => {
 
     //Liten to local storage changes
     useEffect(() => {
-    }, [tasks])
+        setExpanded(false);
+    }, [tasks, pending])
 
     return (
         <Grid container item xs={12} display='flex' flexDirection='column' >
         {
-            tasks.map((task, index) => {
+            filteredTasks.map((task, index) => {
                 return (
-                    task.completed 
-                    ? null
-                    : 
                     <Accordion key={index} expanded={expanded === index} onChange={handleExpansion(index)} >
                         <AccordionSummary
                             classes={{

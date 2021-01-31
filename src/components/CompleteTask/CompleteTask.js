@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const CompleteTask = ({ task }) => {
+const CompleteTask = ({ task, completed=false }) => {
     const classes = useStyles({ priority: task.priority })
     const { changeTaskStatus } = useLocalStorage();
 
@@ -30,7 +30,7 @@ const CompleteTask = ({ task }) => {
     return (
         <div>
             <Tooltip title='Complete task' >
-                <Checkbox className={classes.checkBox} onClick={handleCheckBoxClick} />
+                <Checkbox checked={completed} className={classes.checkBox} onClick={handleCheckBoxClick} />
             </Tooltip>
         </div>
     )

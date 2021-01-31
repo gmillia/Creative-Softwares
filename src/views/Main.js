@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 //COMPONENTS
-import { Tasks, NewTask, DateDisplay, TotalTasks } from 'components';
+import { Tasks, NewTask, DateDisplay, TotalTasks, FakeTabs } from 'components';
 
 //MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -20,7 +20,8 @@ const useStyles = makeStyles(theme => ({
     mainWrap: {
         flexWrap: 'wrap-reverse',
         [theme.breakpoints.up('sm')]: {
-            flexDirection: 'row'
+            flexDirection: 'row',
+            flexWrap: 'wrap'
         }
     },
     taskView: {
@@ -44,13 +45,21 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Main = () => {
+    const [tab, setTab] = useState();
     const classes = useStyles();
+
+    const handleTabChange = (newTab) => {
+        setTab(newTab);
+    }
 
     return (
         <Grid container spacing={0} className={classes.mainRoot} justifyContent='center'  >
             <Grid container item xs={12} sm={10} md={8} className={classes.mainWrap} alignContent='flex-end'  >
+                <Grid item xs={12}>
+                    <FakeTabs setTabCallback={handleTabChange} />
+                </Grid>
                 <Grid container item xs={12} sm={8} className={classes.taskView} alignContent='stretch' >
-                    <Tasks />
+                    <Tasks pending={tab ? tab.toUpperCase() === 'PENDING' : false} />
                     <NewTask />
                 </Grid>
                 <Grid container item xs={12} sm={4} className={classes.sideWrap} display='flex' alignContent='flex-start' >

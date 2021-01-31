@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 //HOOKS
 import { useLocalStorage } from 'hooks';
@@ -19,8 +20,15 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const CompleteTask = ({ task, completed=false }) => {
-    const classes = useStyles({ priority: task.priority })
+/**
+ * Component which displays checkbox that can be used to mark task as completed.
+ * 
+ * @param {Object}  task task object  
+ */
+const CompleteTask = ({ task }) => {
+    const priority = task ? task.priority : undefined;
+    const completed = task ? task.completed : false;
+    const classes = useStyles({ priority })
     const { changeTaskStatus } = useLocalStorage();
 
     const handleCheckBoxClick = () => {
@@ -35,5 +43,9 @@ const CompleteTask = ({ task, completed=false }) => {
         </div>
     )
 };
+
+CompleteTask.propTypes = {
+    task: PropTypes.object.isRequired,
+}
 
 export default CompleteTask;

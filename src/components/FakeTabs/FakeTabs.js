@@ -6,6 +6,12 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
+    fakeTabsRoot: {
+        paddingLeft: 15,
+        [theme.breakpoints.up('sm')]: {
+            paddingLeft: 0,
+        }
+    },
     selected: {
         fontWeight: 800
     },
@@ -31,7 +37,7 @@ const FakeTabs = ({ setTabCallback }) => {
     }, [])
 
     return (
-        <Grid container>
+        <Grid container className={classes.fakeTabsRoot} >
             {
                 LABELS.map((tabLabel, index) => {
                     return (

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocalStorage } from 'hooks';
 
 //COMPONENTS
-import { Task, TaskHead, PriorityButtons, TaskPriority } from 'components';
+import { TaskHead, TaskPriority } from 'components';
 
 //MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,7 +11,6 @@ import Grid from '@material-ui/core/Grid';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles(theme => ({
     expanded: {

@@ -6,6 +6,8 @@ import { Tasks, NewTask, DateDisplay, TotalTasks, FakeTabs } from 'components';
 //MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles(theme => ({
     mainRoot: {
@@ -30,7 +32,7 @@ const useStyles = makeStyles(theme => ({
         borderRadius: 16,
         boxShadow: theme.shadows[10],
         background: 'white',
-        minHeight: "80%",
+        minHeight: "70%",
         [theme.breakpoints.up('sm')]: {
             minHeight: '100%'
         }
@@ -47,6 +49,8 @@ const useStyles = makeStyles(theme => ({
 const Main = () => {
     const [tab, setTab] = useState();
     const classes = useStyles();
+    const theme = useTheme();
+    const desktop = useMediaQuery(theme.breakpoints.up('sm'));
 
     const handleTabChange = (newTab) => {
         setTab(newTab);
@@ -54,14 +58,21 @@ const Main = () => {
 
     return (
         <Grid container spacing={0} className={classes.mainRoot} justifyContent='center'  >
-            <Grid container item xs={12} sm={10} md={8} className={classes.mainWrap} alignContent='flex-end'  >
-                <Grid item xs={12}>
-                    <FakeTabs setTabCallback={handleTabChange} />
-                </Grid>
+            <Grid container item xs={12} sm={10} md={8} className={classes.mainWrap} alignContent='flex-end' >
+                {
+                    desktop 
+                    ? <FakeTabs setTabCallback={handleTabChange} />
+                    : null
+                }
                 <Grid container item xs={12} sm={8} className={classes.taskView} alignContent='stretch' >
                     <Tasks pending={tab ? tab.toUpperCase() === 'PENDING' : false} />
                     <NewTask />
                 </Grid>
+                {
+                    desktop 
+                    ? null
+                    : <FakeTabs setTabCallback={handleTabChange} />
+                }
                 <Grid container item xs={12} sm={4} className={classes.sideWrap} display='flex' alignContent='flex-start' >
                     <DateDisplay />
                     <TotalTasks />

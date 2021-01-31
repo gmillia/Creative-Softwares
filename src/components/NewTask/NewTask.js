@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 //COMPONENTS
-import { AddNewTask, Feedback } from 'components';
+import { AddNewTask } from 'components';
 
 //MATERIAL UI
 import Grid from '@material-ui/core/Grid';

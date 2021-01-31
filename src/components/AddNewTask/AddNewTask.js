@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import clsx from 'clsx';
+import PropTypes from 'prop-types';
 
 //FUNCTIONS
 import { useLocalStorage } from 'hooks';
@@ -33,6 +33,12 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+/**
+ * Component which shows fields neccessary to create a new Task. 
+ * When user clicks Create button, task is added to the local storage.
+ * 
+ * @param {Function} closeDialog Callback function which is used to close the dialog in which this component is displayed.  
+ */
 const AddNewTask = ({ closeDialog }) => {
     const { addTask } = useLocalStorage();
     const [taskName, setTaskName] = useState('');
@@ -45,6 +51,7 @@ const AddNewTask = ({ closeDialog }) => {
         setTaskName(e.target.value);
     }
 
+    //Function which adds new Task to the local storage.
     const addNewTask = () => {
         addTask({
             name: taskName,
@@ -93,5 +100,9 @@ const AddNewTask = ({ closeDialog }) => {
         </Grid>
     )
 };
+
+AddNewTask.propTypes = {
+    closeDialog: PropTypes.func,
+}
 
 export default AddNewTask;

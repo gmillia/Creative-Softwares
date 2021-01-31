@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
+/**
+ * Hook responsible for managing the local storage usage specific for the app.
+ */
 const useLocalStorage = () => {
 
     const [tasksObj, setTasksObj] = useState(() => {
@@ -17,6 +20,7 @@ const useLocalStorage = () => {
     const [tasks, setTasks] = useState(tasksObj && tasksObj.objects ? tasksObj.objects : []);
     const [total, setTotal] = useState(tasks && tasks.length ? tasks.length : 0)
 
+    ///Effect used to listen to changes in the local storage.
     useEffect(() => {
         let isMounted = true;
         window.addEventListener('storage', () => {
@@ -33,11 +37,13 @@ const useLocalStorage = () => {
         }
     }, [])
 
+    //Function used to set local storage tasks AND trigger window event so that we can observe local storage change in the current tab (window)
     const triggerWindow = (newTasks) => {
         window.localStorage.setItem('tasks', JSON.stringify(newTasks));
         window.dispatchEvent(new Event('storage'));
     }
 
+    //Function used to add new task to the local storage
     const addTask = (newTask) => {
         //Assing id
         newTask.id = tasksObj.id;
@@ -53,6 +59,7 @@ const useLocalStorage = () => {
         triggerWindow(tasksObj);
     }
 
+    //Function used to remove task from the local storage
     const removeTask = (taskToRemove) => {
         let newTasks = tasks.filter(obj => obj.id !== taskToRemove.id);
         tasksObj.objects = newTasks;
@@ -61,6 +68,7 @@ const useLocalStorage = () => {
         triggerWindow(tasksObj);
     }
 
+    //Function used to change existing task status (completed/not-completed)
     const changeTaskStatus = (taskToChange) => {
         let changedTask = tasks.find(obj => obj.id === taskToChange.id);
         if(changedTask) changedTask.completed = !changedTask.completed;
@@ -68,6 +76,7 @@ const useLocalStorage = () => {
         triggerWindow(tasksObj);
     }
 
+    //Function used to change existing task priority.
     const changeTaskPriority = (taskToChange, newPriority) => {
         let changedTask = tasks.find(obj => obj.id === taskToChange.id);
         if(changedTask) changedTask.priority = newPriority;
@@ -75,6 +84,7 @@ const useLocalStorage = () => {
         triggerWindow(tasksObj);
     }
 
+    //Function used to change existing task due date.
     const changeTaskDueDate = (taskToChange, newDate) => {
         let changedTask = tasks.find(obj => obj.id === taskToChange.id);
         if(changedTask) changedTask.date = newDate;

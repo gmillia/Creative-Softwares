@@ -1,0 +1,1 @@
+Since we are not using multiple pages (aka not using React router), folder contains Pages aka Views.

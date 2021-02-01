@@ -63,7 +63,6 @@ const useLocalStorage = () => {
     const removeTask = (taskToRemove) => {
         let newTasks = tasks.filter(obj => obj.id !== taskToRemove.id);
         tasksObj.objects = newTasks;
-        tasksObj.id = tasksObj.id - 1;
 
         triggerWindow(tasksObj);
     }

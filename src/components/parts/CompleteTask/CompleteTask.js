@@ -37,7 +37,7 @@ const CompleteTask = ({ task }) => {
 
     return (
         <div>
-            <Tooltip title='Complete task' >
+            <Tooltip title={completed ? 'Uncomplete Task' : 'Complete task'} >
                 <Checkbox checked={completed} className={classes.checkBox} onClick={handleCheckBoxClick} />
             </Tooltip>
         </div>
